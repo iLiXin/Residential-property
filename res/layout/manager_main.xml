@@ -1,0 +1,59 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+    
+    <com.tjpu.property.menu.SlidingMenuView
+        android:id="@+id/sliding_menu_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        
+       <LinearLayout 
+        	android:id="@+id/left_sliding_tab"
+        	android:background="@android:color/darker_gray"
+        	android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:padding="5dip"
+        	android:layout_height="fill_parent">
+            
+            <Button
+                android:text="业主信息管理"
+                android:id="@+id/button1"
+                android:onClick="changeTab1"
+                android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"/>
+            <Button
+                android:text="业主投诉管理"
+                android:id="@+id/button2"
+                android:onClick="changeTab2"
+                android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"/>
+            <Button
+                android:text="业主保修管理"
+                android:id="@+id/button3"
+                 android:onClick="changeTab3"
+                android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"/>
+            <Button
+                android:text="业主费用管理"
+                android:id="@+id/button4"
+                 android:onClick="changeTab4"
+                android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"/>
+          
+    	</LinearLayout>
+        
+    	
+        <FrameLayout 
+        	android:id="@+id/sliding_body"
+            android:layout_width="fill_parent"
+        	android:layout_height="fill_parent">
+            
+    	</FrameLayout>
+    	
+       
+        
+        
+    </com.tjpu.property.menu.SlidingMenuView>
+
+</RelativeLayout>
