@@ -6,22 +6,20 @@
      	android:orientation="vertical">
      	
     <TextView 
-        android:text="内容："
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
-    <TextView 
-        android:id="@+id/compcontent_tv"
-        android:layout_width="fill_parent"
+        android:text="请输入内容"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     
-    <TextView 
-        android:text="回复："
+    <EditText 
+        android:id="@+id/addcomp_et"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
-    <TextView 
-        android:id="@+id/reply_tv"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="100dp"
+        />
     
+    <Button 
+        android:id="@+id/addcomp_bt"
+        android:text="添加"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

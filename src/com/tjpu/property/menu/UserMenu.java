@@ -2,6 +2,7 @@ package com.tjpu.property.menu;
 
 
 import com.tjpu.property.R;
+import com.tjpu.property.user.UserHouse;
 import com.tjpu.property.user.UserInfo;
 import com.tjpu.property.user.UserComplain;
 import com.tjpu.property.user.UserService;
@@ -64,6 +65,12 @@ public class UserMenu extends ActivityGroup {
     public void changeTab4(View view){
     	Intent i = new Intent(this,UserCost.class);
     	View v = getLocalActivityManager().startActivity(UserCost.class.getName(), i).getDecorView();
+    	tabcontent.removeAllViews();
+    	tabcontent.addView(v);
+    }
+    public void changeTab5(View view){
+    	Intent i = new Intent(this,UserHouse.class);
+    	View v = getLocalActivityManager().startActivity(UserHouse.class.getName(), i).getDecorView();
     	tabcontent.removeAllViews();
     	tabcontent.addView(v);
     }

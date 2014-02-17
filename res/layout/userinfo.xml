@@ -1,12 +1,66 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
- 		xmlns:tools="http://schemas.android.com/tools"
-		android:background="@color/blue"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/blue" >
+
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="fill_parent"
-     	android:layout_height="fill_parent">
-     	
-    <TextView 
-        android:text="欢迎"
+        android:layout_height="wrap_content"
+        android:text="欢迎：" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="手机号码：" />
+
+    <EditText
+        android:id="@+id/user_phonenum"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="身份证号码：" />
+
+    <EditText
+        android:id="@+id/user_cardnum"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="用户资产：" />
+
+    <TextView
+        android:id="@+id/user_money"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="注册时间：" />
+
+    <TextView
+        android:id="@+id/user_starttime"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+    
+    <Button 
+        android:id="@+id/edit_info_bt"
+        android:text="修改"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
 
-</RelativeLayout>
+
+</LinearLayout>

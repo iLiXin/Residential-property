@@ -6,29 +6,29 @@
      	android:orientation="vertical">
      	
     <TextView 
-        android:text="类型："
+        android:text="门牌号："
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
     <TextView 
-        android:id="@+id/type_tv"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
-    
-    <TextView 
-        android:text="内容："
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
-    <TextView 
-        android:id="@+id/content_tv"
+        android:id="@+id/doornum_tv"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
     
     <TextView 
-        android:text="房产："
+        android:text="楼号："
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
     <TextView 
-        android:id="@+id/house_tv"
+        android:id="@+id/buliding_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    
+    <TextView 
+        android:text="单元号："
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    <TextView 
+        android:id="@+id/unit_tv"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>、
         
@@ -42,29 +42,29 @@
         android:layout_height="wrap_content"/>
     
     <TextView 
-        android:text="时间："
+        android:text="房屋类型："
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
     <TextView 
-        android:id="@+id/date_tv"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
-    
-    <TextView 
-        android:text="费用："
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
-    <TextView 
-        android:id="@+id/fee_tv"
+        android:id="@+id/housetype_tv"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
     
     <TextView 
-        android:text="处理人员："
+        android:text="房屋朝向："
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
     <TextView 
-        android:id="@+id/person_tv"
+        android:id="@+id/direction_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    
+    <TextView 
+        android:text="地址："
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    <TextView 
+        android:id="@+id/area_tv"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
 

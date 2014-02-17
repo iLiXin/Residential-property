@@ -17,8 +17,11 @@ public class UserCompDetail extends Activity{
 		Intent intent = getIntent();
 		String temp = intent.getStringExtra("id");
 		System.out.println("收到的："+temp);
-		TextView tv = (TextView) findViewById(R.id.usercompdetail_tv);
-		tv.setText(temp);
+		TextView compcontent_tv = (TextView) findViewById(R.id.compcontent_tv);
+		compcontent_tv.setText(temp);
+		
+		TextView reply_tv = (TextView) findViewById(R.id.reply_tv);
+		reply_tv.setText("测试回复");
 		
 	}
 	

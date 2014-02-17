@@ -17,8 +17,18 @@ public class UserServiceDetail extends Activity{
 		Intent intent = getIntent();
 		String temp = intent.getStringExtra("id");
 		System.out.println("收到的："+temp);
-		TextView tv = (TextView) findViewById(R.id.userservicedetail_tv);
-		tv.setText(temp);
+		TextView type_tv = (TextView) findViewById(R.id.type_tv);
+		type_tv.setText(temp);
+		TextView content_tv = (TextView) findViewById(R.id.content_tv);
+		content_tv.setText("换灯泡");
+		TextView house_tv = (TextView) findViewById(R.id.house_tv);
+		house_tv.setText("宿舍");
+		TextView date_tv = (TextView) findViewById(R.id.date_tv);
+		date_tv.setText("2014年2月29日");
+		TextView fee_tv = (TextView) findViewById(R.id.fee_tv);
+		fee_tv.setText("30元");
+		TextView person_tv = (TextView) findViewById(R.id.person_tv);
+		person_tv.setText("保洁");
 		
 	}
 	

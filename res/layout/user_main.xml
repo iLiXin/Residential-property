@@ -40,6 +40,12 @@
                  android:onClick="changeTab4"
                 android:layout_width="wrap_content"
         		android:layout_height="wrap_content"/>
+            <Button
+                android:text="我的房产"
+                android:id="@+id/button5"
+                 android:onClick="changeTab5"
+                android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"/>
           
     	</LinearLayout>
         

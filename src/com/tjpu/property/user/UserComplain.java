@@ -1,9 +1,12 @@
 package com.tjpu.property.user;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 
 import com.tjpu.property.R;
 import com.tjpu.property.view.DropDownListView;
@@ -16,6 +19,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.widget.AdapterView;
+import android.widget.SimpleAdapter;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
 import android.widget.AdapterView.OnItemClickListener;
@@ -30,12 +34,14 @@ public class UserComplain extends Activity{
 	
 	private LinkedList<String>   listItems = null;
     private DropDownListView     listView  = null;
-    private ArrayAdapter<String> adapter;
+    private SimpleAdapter adapter;
     private Button bt = null;
 
     private String[] mStrings  = { "Aaaaaa", "Bbbbbb", "Cccccc", "Dddddd", "Eeeeee",
             "Ffffff", "Gggggg", "Hhhhhh", "Iiiiii", "Jjjjjj", "Kkkkkk", "Llllll", "Mmmmmm",
             "Nnnnnn"};
+    
+    private List<HashMap<String, String>> data = new ArrayList<HashMap<String, String>>();
 
 
 	@Override
@@ -90,13 +96,25 @@ public class UserComplain extends Activity{
 			}
 		});
         
-
-  //      SimpleAdapter adapter = new SimpleAdapter(this,getData(),R.layout.book_items,
-  //              new String[]{"title","year","author","status"},
-  //              new int[]{R.id.title,R.id.year,R.id.author,R.id.status});
-        listItems = new LinkedList<String>();
-        listItems.addAll(Arrays.asList(mStrings));
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
+        HashMap<String, String> map1 = new HashMap<String, String>();
+        map1.put("title", "标题1");
+        map1.put("flag", "0");
+        HashMap<String, String> map2 = new HashMap<String, String>();
+        map2.put("title", "标题2");
+        map2.put("flag", "1");
+        data.add(map1);
+        data.add(map2);
+        data.add(map2);
+        data.add(map2);
+        data.add(map2);
+        data.add(map2);
+        data.add(map2);
+        data.add(map2);
+        data.add(map2);
+        data.add(map2);
+        data.add(map2);
+        
+        adapter = new SimpleAdapter(this, data, R.layout.userservice_items, new String[]{"title","flag"}, new int[]{R.id.title,R.id.flag});
         listView.setAdapter(adapter);
         
         listView.setOnItemClickListener(new OnItemClickListener() {

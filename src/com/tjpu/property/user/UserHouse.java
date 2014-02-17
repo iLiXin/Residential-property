@@ -1,13 +1,9 @@
 package com.tjpu.property.user;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 import com.tjpu.property.R;
 import com.tjpu.property.view.DropDownListView;
@@ -18,46 +14,27 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.SimpleAdapter;
 import android.app.Activity;
 import android.content.Intent;
 
-public class UserService extends Activity{
-	
+public class UserHouse extends Activity{
+
 	private LinkedList<String>   listItems = null;
     private DropDownListView     listView  = null;
-    private SimpleAdapter adapter;
-    private Button bt = null;
+    private ArrayAdapter<String> adapter;
 
     private String[] mStrings  = { "Aaaaaa", "Bbbbbb", "Cccccc", "Dddddd", "Eeeeee",
             "Ffffff", "Gggggg", "Hhhhhh", "Iiiiii", "Jjjjjj", "Kkkkkk", "Llllll", "Mmmmmm",
             "Nnnnnn"};
 
-    private List<HashMap<String, String>> data = new ArrayList<HashMap<String, String>>();
-    
-    
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.userservice);
-        
-        bt = (Button) findViewById(R.id.addService);
-        bt.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent intent = new Intent();
-				intent.setClass(UserService.this, AddService.class);
-				UserService.this.startActivity(intent);
-			}
-		});
-        
-        
-        listView = (DropDownListView)findViewById(R.id.userservice_lv);
+        setContentView(R.layout.userhouse);
+
+        listView = (DropDownListView)findViewById(R.id.userhouse_lv);
         // set drop down listener
         listView.setOnDropDownListener(new OnDropDownListener() {
 
@@ -76,25 +53,9 @@ public class UserService extends Activity{
             }
         });
 
-        HashMap<String, String> map1 = new HashMap<String, String>();
-        map1.put("title", "标题1");
-        map1.put("flag", "0");
-        HashMap<String, String> map2 = new HashMap<String, String>();
-        map2.put("title", "标题2");
-        map2.put("flag", "1");
-        data.add(map1);
-        data.add(map2);
-        data.add(map2);
-        data.add(map2);
-        data.add(map2);
-        data.add(map2);
-        data.add(map2);
-        data.add(map2);
-        data.add(map2);
-        data.add(map2);
-        data.add(map2);
-        
-        adapter = new SimpleAdapter(this, data, R.layout.userservice_items, new String[]{"title","flag"}, new int[]{R.id.title,R.id.flag});
+        listItems = new LinkedList<String>();
+        listItems.addAll(Arrays.asList(mStrings));
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
         listView.setAdapter(adapter);
         
         listView.setOnItemClickListener(new OnItemClickListener() {
@@ -106,8 +67,8 @@ public class UserService extends Activity{
 				
 				Intent intent = new Intent();
 				intent.putExtra("id", arg3+"");
-				intent.setClass(UserService.this, UserServiceDetail.class);
-				UserService.this.startActivity(intent);
+				intent.setClass(UserHouse.this, UserHouseDetail.class);
+				UserHouse.this.startActivity(intent);
 				
 			}
         });
@@ -153,5 +114,4 @@ public class UserService extends Activity{
             super.onPostExecute(result);
         }
     }
-    
 }
