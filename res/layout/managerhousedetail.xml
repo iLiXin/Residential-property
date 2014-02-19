@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ 		xmlns:tools="http://schemas.android.com/tools"
+		android:background="@color/blue"
+        android:layout_width="fill_parent"
+     	android:layout_height="fill_parent"
+     	android:orientation="vertical">
+     	
+    <TextView 
+        android:text="门牌号："
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    <TextView 
+        android:id="@+id/m_doornum_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    
+    <TextView 
+        android:text="楼号："
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    <TextView 
+        android:id="@+id/m_buliding_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    
+    <TextView 
+        android:text="单元号："
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    <TextView 
+        android:id="@+id/m_unit_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>、
+        
+    <TextView 
+        android:text="楼层："
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    <TextView 
+        android:id="@+id/m_floor_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    
+    <TextView 
+        android:text="房屋类型："
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    <TextView 
+        android:id="@+id/m_housetype_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    
+    <TextView 
+        android:text="房屋朝向："
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    <TextView 
+        android:id="@+id/m_direction_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    
+    <TextView 
+        android:text="地址："
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    <TextView 
+        android:id="@+id/m_area_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    
+    <Button 
+        android:id="@+id/edit_house_bt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

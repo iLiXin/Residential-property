@@ -5,8 +5,10 @@ package com.tjpu.property.menu;
 import com.tjpu.property.R;
 import com.tjpu.property.manager.ManagerComplain;
 import com.tjpu.property.manager.ManagerCost;
+import com.tjpu.property.manager.ManagerHouse;
 import com.tjpu.property.manager.ManagerInfo;
 import com.tjpu.property.manager.ManagerService;
+import com.tjpu.property.user.UserHouse;
 
 import android.os.Bundle;
 import android.app.ActivityGroup;
@@ -65,6 +67,12 @@ public class ManagerMenu extends ActivityGroup {
     public void changeTab4(View view){
     	Intent i = new Intent(this,ManagerCost.class);
     	View v = getLocalActivityManager().startActivity(ManagerCost.class.getName(), i).getDecorView();
+    	tabcontent.removeAllViews();
+    	tabcontent.addView(v);
+    }
+    public void changeTab5(View view){
+    	Intent i = new Intent(this,ManagerHouse.class);
+    	View v = getLocalActivityManager().startActivity(UserHouse.class.getName(), i).getDecorView();
     	tabcontent.removeAllViews();
     	tabcontent.addView(v);
     }

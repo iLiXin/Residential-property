@@ -1,10 +1,16 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
  		xmlns:tools="http://schemas.android.com/tools"
 		android:background="@color/solid_red"
         android:layout_width="fill_parent"
      	android:layout_height="fill_parent">
-        <Button
-            android:text="业主投诉管理"
-            android:layout_width="wrap_content"
-    		 android:layout_height="wrap_content"/>
-</LinearLayout>
+
+    <com.tjpu.property.view.DropDownListView
+        android:id="@+id/managercomplain_lv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawSelectorOnTop="false"
+        android:layout_marginBottom="40dp"
+        />
+
+    
+</RelativeLayout>

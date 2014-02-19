@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ 		xmlns:tools="http://schemas.android.com/tools"
+		android:background="@color/blue"
+        android:layout_width="fill_parent"
+     	android:layout_height="fill_parent"
+     	android:orientation="vertical">
+     	
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="欢迎：" />
+
+    <EditText
+        android:id="@+id/manager_name_add"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="手机号码：" />
+
+    <EditText
+        android:id="@+id/manager_phonenum_add"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="身份证号码：" />
+
+    <EditText
+        android:id="@+id/manager_cardnum_add"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="用户资产：" />
+
+    <EditText
+        android:id="@+id/manager_money_add"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    
+    <Button 
+        android:id="@+id/m_add_info_bt"
+        android:text="添加"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

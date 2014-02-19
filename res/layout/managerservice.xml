@@ -1,11 +1,15 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
  		xmlns:tools="http://schemas.android.com/tools"
 		android:background="@color/orange"
         android:layout_width="fill_parent"
      	android:layout_height="fill_parent">
 
-        <Button
-            android:text="业主报修管理"
-            android:layout_width="wrap_content"
-    		android:layout_height="wrap_content"/>
-</LinearLayout>
+        <com.tjpu.property.view.DropDownListView
+        android:id="@+id/managerservice_lv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:drawSelectorOnTop="false"
+        android:paddingBottom="40dp"
+        />
+        
+</RelativeLayout>

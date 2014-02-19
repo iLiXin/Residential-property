@@ -4,8 +4,11 @@
         android:layout_width="fill_parent"
      	android:layout_height="fill_parent">
 
-        <Button
-            android:text="业主费用管理"
-            android:layout_width="wrap_content"
-    		android:layout_height="wrap_content"/>
+        <com.tjpu.property.view.DropDownListView
+        android:id="@+id/managercost_lv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:drawSelectorOnTop="false"
+        android:paddingBottom="40dp"
+        />
 </LinearLayout>

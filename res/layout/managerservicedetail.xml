@@ -1,0 +1,71 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ 		xmlns:tools="http://schemas.android.com/tools"
+		android:background="@color/blue"
+        android:layout_width="fill_parent"
+     	android:layout_height="fill_parent"
+     	android:orientation="vertical">
+     	
+    <TextView 
+        android:text="类型："
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    <TextView 
+        android:id="@+id/m_type_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    
+    <TextView 
+        android:text="内容："
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    <TextView 
+        android:id="@+id/m_content_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    
+    <TextView 
+        android:text="房产："
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    <TextView 
+        android:id="@+id/m_house_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>、
+        
+    <TextView 
+        android:text="楼层："
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    <TextView 
+        android:id="@+id/m_floor_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    
+    <TextView 
+        android:text="时间："
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    <TextView 
+        android:id="@+id/m_date_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    
+    <TextView 
+        android:text="费用："
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    <TextView 
+        android:id="@+id/m_fee_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    
+    <TextView 
+        android:text="处理人员："
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    <TextView 
+        android:id="@+id/m_person_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

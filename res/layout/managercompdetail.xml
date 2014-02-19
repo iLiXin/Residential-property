@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ 		xmlns:tools="http://schemas.android.com/tools"
+		android:background="@color/blue"
+        android:layout_width="fill_parent"
+     	android:layout_height="fill_parent"
+     	android:orientation="vertical">
+     	
+    <TextView 
+        android:text="内容："
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    <TextView 
+        android:id="@+id/m_compcontent_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    
+    <TextView 
+        android:text="回复："
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    <EditText 
+        android:id="@+id/reply_ed"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"/>
+    
+    <Button 
+        android:id="@+id/reply_bt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    
+
+</LinearLayout>
