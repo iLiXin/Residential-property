@@ -1,4 +1,4 @@
-package com.tjpu.property.entity;
+package com.tjpu.pojo;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 

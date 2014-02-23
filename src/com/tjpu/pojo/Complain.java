@@ -1,11 +1,25 @@
-package com.tjpu.property.entity;
+package com.tjpu.pojo;
 
 public class Complain {
 	
 	private int id;
 	private int user;
 	private String content;
+	private String reply = "0";
+	private String title; 
 	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getReply() {
+		return reply;
+	}
+	public void setReply(String reply) {
+		this.reply = reply;
+	}
 	public int getId() {
 		return id;
 	}

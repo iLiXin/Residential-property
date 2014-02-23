@@ -1,7 +1,10 @@
-package com.tjpu.property.entity;
+package com.tjpu.pojo;
 
 import java.util.List;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
+@XStreamAlias(value = "msg")
 public class Response {
 	
 	private String toUser;

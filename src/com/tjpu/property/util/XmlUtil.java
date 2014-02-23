@@ -49,9 +49,11 @@ public class XmlUtil {
 	 * @param object ��ת������
 	 * @return xml
 	 */ 
-    public static String objectToXml(Object object) {  
+    public static String objectToXml(Object object, String root) {  
     	
-    	return getWriteXStream(object).toXML(object);  
+    	String temp = getWriteXStream(object).toXML(object);
+    	String fullname = object.getClass().getName();
+    	return temp.replace(fullname, root);
     }
 	
     
@@ -59,7 +61,8 @@ public class XmlUtil {
     private static XStream getWriteXStream(Object object){
     	
     	xstream = getCDATAXStream();
-    	xstream.processAnnotations(object.getClass()); 
+    //	xstream.processAnnotations(object.getClass()); 
+    	
 		return xstream;
     	
     }

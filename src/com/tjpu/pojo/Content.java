@@ -1,10 +1,10 @@
-package com.tjpu.property.entity;
+package com.tjpu.pojo;
 
 import java.util.List;
 
 public class Content {
 	
-	private List<Object> Value;
+	private List<Object> value;
 	private String identify;
 	
 	public String getIdentify() {
@@ -14,10 +14,10 @@ public class Content {
 		this.identify = identify;
 	}
 	public List<Object> getValue() {
-		return Value;
+		return value;
 	}
 	public void setValue(List<Object> value) {
-		Value = value;
+		this.value = value;
 	}
 	
 	

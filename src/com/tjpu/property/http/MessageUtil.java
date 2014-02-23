@@ -8,15 +8,18 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.util.EntityUtils;
-import com.tjpu.property.entity.Constance;
-import com.tjpu.property.entity.Content;
-import com.tjpu.property.entity.Request;
+
+import com.tjpu.pojo.Constance;
+import com.tjpu.pojo.Content;
+import com.tjpu.pojo.Request;
+import com.tjpu.pojo.Response;
 import com.tjpu.property.util.XmlUtil;
 
 public class MessageUtil {
 	
-	public void send(String fromUser, String createTime, String type, Content content){
+	public String send(String fromUser, String createTime, String type, Content content){
 		
 		try {
 			
@@ -26,8 +29,7 @@ public class MessageUtil {
 			myRequest.setType(type);
 			myRequest.setContent(content);
 			
-			@SuppressWarnings("static-access")
-			String msg = new XmlUtil().objectToXml(myRequest);
+			String msg = new XmlUtil().objectToXml(myRequest,"msg");
 			
 			System.out.println("-----"+msg);
 			
@@ -44,13 +46,18 @@ public class MessageUtil {
             String result = EntityUtils.toString(response.getEntity(), "utf-8");//获取服务器响应内容
             System.out.println(resCode);
             System.out.println(result);
-			
+            
+            return result;
+            
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
+			return "error";
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
+			return "error";
 		} catch (IOException e) {
 			e.printStackTrace();
+			return "error";
 		}   
 	}
 }
