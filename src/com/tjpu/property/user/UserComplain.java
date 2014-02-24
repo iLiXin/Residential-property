@@ -28,6 +28,7 @@ import android.widget.Button;
 import android.widget.AdapterView.OnItemClickListener;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 public class UserComplain extends Activity{
@@ -38,6 +39,8 @@ public class UserComplain extends Activity{
     private Button bt = null;
     private String lasttime;
     private int index = 10;
+    private int location;
+    private String id;
     
     private LinkedList<HashMap<String, String>> data = new LinkedList<HashMap<String, String>>();
 
@@ -90,12 +93,39 @@ public class UserComplain extends Activity{
 			@Override
 			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
-				System.out.println("按下");
-				new AlertDialog.Builder(getParent())
-				.setMessage("确定删除吗？")  
-				.setPositiveButton("是", null)  
-				.setNegativeButton("否", null)  
-				.show();
+				location = arg2;
+				id = data.get(arg2-1).get("id");
+				System.out.println("按下:"+id);
+				new AlertDialog.Builder(UserComplain.this).setTitle("提示").setMessage("确定要删除吗？")
+                .setPositiveButton("确定",new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					
+					List<Object> templist = new ArrayList<Object>();
+					templist.add(new Complain());
+						
+					Content content = new Content();
+				    content.setValue(templist);
+				    content.setIdentify(id);
+				    String createTime = "0000";
+					try {
+						createTime = DateOpt.getNowTime();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					String result = new MessageUtil().send("2", createTime, "delete", content);
+					data.remove(location-1);
+					adapter.notifyDataSetChanged();
+					listView.invalidate();
+						
+				}
+								
+			       }).setNegativeButton("取消",new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+			                  }
+				}).create().show();
 				return false;
 			}
 		});
@@ -120,8 +150,9 @@ public class UserComplain extends Activity{
         for (Object object : values) {
         	HashMap<String, String> map = new HashMap<String, String>();
             map.put("title", ((Complain)object).getTitle());
+            map.put("id", ((Complain)object).getId()+"");
             String flag = "未回复";
-            if(((Complain)object).getReply().equals("1")){
+            if(!((Complain)object).getReply().equals("0")){
             	flag = "已回复";
             }
             map.put("flag", flag);
@@ -138,9 +169,11 @@ public class UserComplain extends Activity{
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				System.out.println("点击了："+ arg3);
-				
+				id = data.get(arg2-1).get("id");
+				System.out.println("id="+id);
 				Intent intent = new Intent();
-				intent.putExtra("id", arg3+"");
+				
+				intent.putExtra("id", id+"");
 				intent.setClass(UserComplain.this, UserCompDetail.class);
 				UserComplain.this.startActivity(intent);
 				

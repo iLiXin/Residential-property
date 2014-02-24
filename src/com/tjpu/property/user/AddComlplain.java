@@ -5,9 +5,11 @@ import java.util.List;
 
 import com.tjpu.pojo.Complain;
 import com.tjpu.pojo.Content;
+import com.tjpu.pojo.Response;
 import com.tjpu.property.R;
 import com.tjpu.property.http.MessageUtil;
 import com.tjpu.property.util.DateOpt;
+import com.tjpu.property.util.XmlUtil;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -40,7 +42,7 @@ public class AddComlplain extends Activity{
 				
 				SharedPreferences sp = getSharedPreferences("user", MODE_WORLD_WRITEABLE);
 				sp.edit().putString("user", "3");
-				String user = sp.getString("user", "0");
+				String user = sp.getString("user", "2");
 				
 				String content = et.getText().toString().trim();
 				String title = title_et.getText().toString().trim();
@@ -48,6 +50,11 @@ public class AddComlplain extends Activity{
 				comp.setContent(content);
 				comp.setUser(Integer.parseInt(user));
 				comp.setTitle(title);
+				try {
+					comp.setTime(DateOpt.getNowTime());
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 				
 				List<Object> list = new ArrayList<Object>();
 				list.add(comp);
@@ -63,7 +70,10 @@ public class AddComlplain extends Activity{
 				}
 				
 				String result = new MessageUtil().send(user, nowTime, "insert", con);
-				if(result.equals("1")){
+				
+				Response resp = (Response) new XmlUtil().xmlToObject(result, new Response(), "msg");
+				String re = resp.getResult();
+				if(re.equals("1")){
 					Toast.makeText(getApplicationContext(), "添加成功",
 						     Toast.LENGTH_SHORT).show();
 					AddComlplain.this.finish();
@@ -71,7 +81,6 @@ public class AddComlplain extends Activity{
 					Toast.makeText(getApplicationContext(), "添加失败",
 						     Toast.LENGTH_SHORT).show();
 				}
-				
 			}
 		});
 		
