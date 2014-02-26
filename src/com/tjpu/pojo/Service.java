@@ -3,30 +3,45 @@ package com.tjpu.pojo;
 public class Service {
 	
 	private int id;
-	private int type;
-	private int house;
+	private int user;
 	private int fee;
+	private String title;
 	private String content;
 	private String date;
-	private String person;
 	private String state;
+	private String time;
+	private String person;
+	private String type;
+	
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getPerson() {
+		return person;
+	}
+	public void setPerson(String person) {
+		this.person = person;
+	}
+	public int getUser() {
+		return user;
+	}
+	public void setUser(int user) {
+		this.user = user;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public int getType() {
-		return type;
-	}
-	public void setType(int type) {
-		this.type = type;
-	}
-	public int getHouse() {
-		return house;
-	}
-	public void setHouse(int house) {
-		this.house = house;
 	}
 	public int getFee() {
 		return fee;
@@ -46,18 +61,17 @@ public class Service {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public String getPerson() {
-		return person;
-	}
-	public void setPerson(String person) {
-		this.person = person;
-	}
 	public String getState() {
 		return state;
 	}
 	public void setState(String state) {
 		this.state = state;
 	}
-	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
 }

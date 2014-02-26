@@ -9,6 +9,15 @@ public class Userinfo {
 	private String starttime;
 	private String cardnum;
 	private String money;
+	private String time;
+	
+	
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
 	public int getId() {
 		return id;
 	}

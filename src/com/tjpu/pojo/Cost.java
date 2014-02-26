@@ -5,7 +5,22 @@ public class Cost {
 	private int id;
 	private int price;
 	private int count;
-	private int house;
+	private int user;
+	private String time;
+	
+	
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
+	public int getUser() {
+		return user;
+	}
+	public void setUser(int user) {
+		this.user = user;
+	}
 	private String name;
 	
 	public int getId() {
@@ -25,12 +40,6 @@ public class Cost {
 	}
 	public void setCount(int count) {
 		this.count = count;
-	}
-	public int getHouse() {
-		return house;
-	}
-	public void setHouse(int house) {
-		this.house = house;
 	}
 	public String getName() {
 		return name;

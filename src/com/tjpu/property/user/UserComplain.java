@@ -10,6 +10,7 @@ import java.util.List;
 import com.tjpu.pojo.Complain;
 import com.tjpu.pojo.Content;
 import com.tjpu.pojo.Response;
+import com.tjpu.pojo.Service;
 import com.tjpu.property.R;
 import com.tjpu.property.http.MessageUtil;
 import com.tjpu.property.util.DateOpt;
@@ -208,6 +209,7 @@ public class UserComplain extends Activity{
                     for (Object object : list) {
                     	HashMap<String, String> map = new HashMap<String, String>();
                         map.put("title", ((Complain)object).getTitle());
+                        map.put("id", ((Complain)object).getId()+"");
                         String flag = "未回复";
                         if(((Complain)object).getReply().equals("1")){
                         	flag = "已回复";
@@ -235,6 +237,7 @@ public class UserComplain extends Activity{
                     for (Object object : list) {
                     	HashMap<String, String> map = new HashMap<String, String>();
                         map.put("title", ((Complain)object).getTitle());
+                        map.put("id", ((Complain)object).getId()+"");
                         String flag = "未回复";
                         if(((Complain)object).getReply().equals("1")){
                         	flag = "已回复";
@@ -249,7 +252,6 @@ public class UserComplain extends Activity{
             	
                 
             } catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
             return data;

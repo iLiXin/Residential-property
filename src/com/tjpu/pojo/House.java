@@ -11,6 +11,13 @@ public class House {
 	private String housetype;
 	private String direction;
 	private String other;
+	private String time;
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
 	public int getId() {
 		return id;
 	}
