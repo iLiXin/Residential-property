@@ -2,7 +2,8 @@
  		xmlns:tools="http://schemas.android.com/tools"
 		android:background="@color/solid_yellow"
         android:layout_width="fill_parent"
-     	android:layout_height="fill_parent">
+     	android:layout_height="fill_parent"
+     	android:orientation="vertical">
 
         <com.tjpu.property.view.DropDownListView
         android:id="@+id/managercost_lv"
@@ -11,4 +12,10 @@
         android:drawSelectorOnTop="false"
         android:paddingBottom="40dp"
         />
+        
+        <Button
+        android:id="@+id/addCost"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="添加"/>
 </LinearLayout>

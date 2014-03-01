@@ -3,7 +3,7 @@ package com.tjpu.pojo;
 public class Userinfo {
 	
 	private int id;
-	private int userid;
+	private int user;
 	private String name;
 	private String phonenum;
 	private String starttime;
@@ -24,11 +24,11 @@ public class Userinfo {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getUserid() {
-		return userid;
+	public int getUser() {
+		return user;
 	}
-	public void setUserid(int userid) {
-		this.userid = userid;
+	public void setUser(int userid) {
+		this.user = userid;
 	}
 	public String getName() {
 		return name;

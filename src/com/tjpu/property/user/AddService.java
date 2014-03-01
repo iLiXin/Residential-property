@@ -43,9 +43,8 @@ public class AddService extends Activity{
 			@Override
 			public void onClick(View v) {
 				
-				SharedPreferences sp = getSharedPreferences("user", MODE_WORLD_WRITEABLE);
-				sp.edit().putString("user", "3");
-				String user = sp.getString("user", "2");
+				SharedPreferences sp = getSharedPreferences("TOKEN", MODE_PRIVATE);
+				String user = sp.getInt("user", 2)+"";
 				
 				String type = addserv_type_et.getText().toString().trim();
 				String content = addserv_content_et.getText().toString().trim();

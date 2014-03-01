@@ -19,7 +19,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
     <EditText 
-        android:id="@+id/reply_ed"
+        android:id="@+id/m_reply_ed"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="text"/>
@@ -27,7 +27,8 @@
     <Button 
         android:id="@+id/reply_bt"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="回复"/>
     
 
 </LinearLayout>

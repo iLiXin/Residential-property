@@ -25,6 +25,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AdapterView.OnItemClickListener;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 
 public class UserHouse extends Activity{
 
@@ -34,11 +35,14 @@ public class UserHouse extends Activity{
     private ArrayAdapter<String> adapter;
     private String lasttime;
     private int index = 10;
-
+    String user = "2";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.userhouse);
+        
+        SharedPreferences sp = getSharedPreferences("TOKEN", MODE_PRIVATE);
+        user = sp.getInt("user", 2)+"";
         
         try {
 			lasttime = DateOpt.getNowTime();
@@ -70,7 +74,7 @@ public class UserHouse extends Activity{
 		
 		Content content = new Content();
     	content.setValue(templist);
-    	content.setIdentify("house");
+    	content.setIdentify(user);
     	String createTime = "0000";
 		try {
 			createTime = DateOpt.getNowTime();
@@ -80,7 +84,7 @@ public class UserHouse extends Activity{
         
         listItems = new LinkedList<String>();
         idItems = new LinkedList<String>();
-        String result = new MessageUtil().send("2", createTime, "select_*", content);
+        String result = new MessageUtil().send(user, createTime, "select_*", content);
 		
 		Response resp = (Response) new XmlUtil().xmlToObject(result, new Response(), "msg");
         List<Object> values = resp.getValues();
@@ -126,7 +130,7 @@ public class UserHouse extends Activity{
 	        	content.setIdentify(lasttime);
 	        	content.setValue(templist);
 	        	
-	            String res = new MessageUtil().send("2", lasttime, "select_*_drop", content);
+	            String res = new MessageUtil().send(user, lasttime, "select_*_drop", content);
 	            Response resp = (Response) new XmlUtil().xmlToObject(res, new Response(), "msg");
 	            List<Object> list =resp.getValues();
 	            for (Object object : list) {
@@ -147,7 +151,7 @@ public class UserHouse extends Activity{
             	content.setIdentify(index+"");
             	content.setValue(templist);
         		
-                String res = new MessageUtil().send("2", index+"", "select_*_bottom", content);
+                String res = new MessageUtil().send(user, index+"", "select_*_bottom", content);
                 Response resp = (Response) new XmlUtil().xmlToObject(res, new Response(), "msg");
                 List<Object> list =resp.getValues();
                 if(list.size()==0){

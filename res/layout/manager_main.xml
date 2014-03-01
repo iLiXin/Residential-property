@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
         		android:layout_height="wrap_content"/>
             <Button
-                android:text="业主保修管理"
+                android:text="业主报修管理"
                 android:id="@+id/button3"
                  android:onClick="changeTab3"
                 android:layout_width="wrap_content"

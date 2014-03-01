@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ 		xmlns:tools="http://schemas.android.com/tools"
+		android:background="@color/blue"
+        android:layout_width="fill_parent"
+     	android:layout_height="fill_parent"
+     	android:orientation="vertical">
+     	
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="名称：" />
+
+    <EditText
+        android:id="@+id/m_name_add"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="费用：" />
+
+    <EditText
+        android:id="@+id/m_price_add"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="数量：" />
+
+    <EditText
+        android:id="@+id/m_count_add"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="用户：" />
+
+    <EditText
+        android:id="@+id/m_user_add"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    
+    <Button 
+        android:id="@+id/m_add_cost_bt"
+        android:text="添加"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

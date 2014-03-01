@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="欢迎：" />
+        android:text="姓名：" />
 
     <EditText
         android:id="@+id/manager_name_add"
@@ -42,6 +42,26 @@
 
     <EditText
         android:id="@+id/manager_money_add"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+    
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="用户名：" />
+
+    <EditText
+        android:id="@+id/manager_username_add"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+    
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="密码：" />
+
+    <EditText
+        android:id="@+id/manager_password_add"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
 

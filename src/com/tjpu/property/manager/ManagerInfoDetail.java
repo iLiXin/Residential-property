@@ -1,22 +1,34 @@
 package com.tjpu.property.manager;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import com.tjpu.pojo.Content;
+import com.tjpu.pojo.Response;
+import com.tjpu.pojo.Userinfo;
 import com.tjpu.property.R;
+import com.tjpu.property.http.MessageUtil;
+import com.tjpu.property.util.DateOpt;
+import com.tjpu.property.util.XmlUtil;
 
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TextView;
 import android.app.Activity;
+import android.content.Intent;
 
 public class ManagerInfoDetail extends Activity{
 	
-	EditText name_et;
-	EditText phonenum_et;
-	EditText cardnum_et;
-	EditText money_et;
+	HashMap<String, String> map = new HashMap<String, String>();
+	TextView name_et;
+	TextView phonenum_et;
+	TextView cardnum_et;
+	TextView money_et;
 	Button bt;
 
     @Override
@@ -24,43 +36,48 @@ public class ManagerInfoDetail extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.managerinfodetail);
         
-        name_et = (EditText) findViewById(R.id.manager_name);
-        name_et.setText("业主");
-        name_et.setEnabled(false);
-        name_et.setFocusable(false);
+        Intent intent = getIntent();
+        String id = intent.getStringExtra("id");
         
-        phonenum_et = (EditText) findViewById(R.id.manager_phonenum);
-        phonenum_et.setText("13012345678");
-        phonenum_et.setEnabled(false);
-        phonenum_et.setFocusable(false);
+        List<Object> templist = new ArrayList<Object>();
+		templist.add(new Userinfo());
+		
+		Content content = new Content();
+    	content.setValue(templist);
+    	content.setIdentify(id);
+    	String createTime = "0000";
+		try {
+			createTime = DateOpt.getNowTime();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
         
-        cardnum_et = (EditText) findViewById(R.id.manager_cardnum);
-        cardnum_et.setText("123098765412431231");
-        cardnum_et.setEnabled(false);
-        cardnum_et.setFocusable(false);
+        String result = new MessageUtil().send(id, createTime, "select_1", content);
+        Response resp = (Response) new XmlUtil().xmlToObject(result, new Response(), "msg");
+        List<Object> values = resp.getValues();
+        for (Object object : values) {
+            map.put("name", ((Userinfo)object).getName());
+            map.put("cardnum", ((Userinfo)object).getCardnum());
+            map.put("phonenum", ((Userinfo)object).getPhonenum());
+            map.put("starttime", ((Userinfo)object).getStarttime());
+            map.put("money", ((Userinfo)object).getMoney());
+		}
         
-        money_et = (EditText) findViewById(R.id.manager_money);
-        money_et.setText("200000");
-        money_et.setEnabled(false);
-        money_et.setFocusable(false);
+        name_et = (TextView) findViewById(R.id.manager_name);
+        name_et.setText(map.get("name"));
         
+        phonenum_et = (TextView) findViewById(R.id.manager_phonenum);
+        phonenum_et.setText(map.get("phonenum"));
+        
+        cardnum_et = (TextView) findViewById(R.id.manager_cardnum);
+        cardnum_et.setText(map.get("cardnum"));
+        
+        money_et = (TextView) findViewById(R.id.manager_money);
+        money_et.setText(map.get("money"));
         
         TextView starttime_tv = (TextView) findViewById(R.id.manager_starttime);
-        starttime_tv.setText("2014年2月29日");
+        starttime_tv.setText(map.get("starttime"));
         
-        bt = (Button) findViewById(R.id.m_edit_info_bt);
-        bt.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				name_et.setEnabled(true);
-				phonenum_et.setEnabled(true);
-				cardnum_et.setEnabled(true);
-				money_et.setEnabled(true);
-				bt.setText("完成");
-				
-			}
-		});
         
     }
     

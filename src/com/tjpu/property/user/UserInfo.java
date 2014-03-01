@@ -22,6 +22,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 
 public class UserInfo extends Activity{
 	
@@ -36,12 +38,15 @@ public class UserInfo extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.userinfo);
         
+        SharedPreferences sharedPreferences = getSharedPreferences("TOKEN", Context.MODE_PRIVATE);
+		int token = sharedPreferences.getInt("user", 2);
+        
         List<Object> templist = new ArrayList<Object>();
 		templist.add(new Userinfo());
 		
 		Content content = new Content();
     	content.setValue(templist);
-    	content.setIdentify("2");
+    	content.setIdentify(token+"");
     	String createTime = "0000";
 		try {
 			createTime = DateOpt.getNowTime();
@@ -49,7 +54,7 @@ public class UserInfo extends Activity{
 			e.printStackTrace();
 		}
         
-        String result = new MessageUtil().send("2", createTime, "select_1", content);
+        String result = new MessageUtil().send(token+"", createTime, "select_1", content);
         Response resp = (Response) new XmlUtil().xmlToObject(result, new Response(), "msg");
         List<Object> values = resp.getValues();
         for (Object object : values) {

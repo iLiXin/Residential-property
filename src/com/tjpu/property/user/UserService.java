@@ -31,6 +31,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 
 public class UserService extends Activity{
 
@@ -42,6 +43,7 @@ public class UserService extends Activity{
     private int index = 10;
     private int location;
     private String id;
+    String user = "2";
     
     private LinkedList<HashMap<String, String>> data = new LinkedList<HashMap<String, String>>();
 
@@ -50,6 +52,9 @@ public class UserService extends Activity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.userservice);
+        
+        SharedPreferences sp = getSharedPreferences("TOKEN", MODE_PRIVATE);
+        user = sp.getInt("user", 2)+"";
         
         try {
 			lasttime = DateOpt.getNowTime();
@@ -95,7 +100,7 @@ public class UserService extends Activity{
 		
 		Content content = new Content();
     	content.setValue(templist);
-    	content.setIdentify("service");
+    	content.setIdentify(user);
     	String createTime = "0000";
 		try {
 			createTime = DateOpt.getNowTime();
@@ -103,7 +108,7 @@ public class UserService extends Activity{
 			e.printStackTrace();
 		}
         
-        String result = new MessageUtil().send("2", createTime, "select_*", content);
+        String result = new MessageUtil().send(user, createTime, "select_*", content);
 		
 		Response resp = (Response) new XmlUtil().xmlToObject(result, new Response(), "msg");
         List<Object> values = resp.getValues();
@@ -162,16 +167,16 @@ public class UserService extends Activity{
                 	content.setIdentify(lasttime);
                 	content.setValue(templist);
                 	
-                    String result = new MessageUtil().send("2", lasttime, "select_*_drop", content);
+                    String result = new MessageUtil().send(user, lasttime, "select_*_drop", content);
                     Response resp = (Response) new XmlUtil().xmlToObject(result, new Response(), "msg");
                     List<Object> list =resp.getValues();
                     for (Object object : list) {
                     	HashMap<String, String> map = new HashMap<String, String>();
                         map.put("title", ((Service)object).getTitle());
                         map.put("id", ((Service)object).getId()+"");
-                        String flag = "未回复";
+                        String flag = "未处理";
                         if(((Service)object).getState().equals("1")){
-                        	flag = "已回复";
+                        	flag = "已处理";
                         }
                         map.put("flag", flag);
                         data.addFirst(map);
@@ -186,7 +191,7 @@ public class UserService extends Activity{
                 	content.setIdentify(index+"");
                 	content.setValue(templist);
             		
-                    String result = new MessageUtil().send("2", index+"", "select_*_bottom", content);
+                    String result = new MessageUtil().send(user, index+"", "select_*_bottom", content);
                     Response resp = (Response) new XmlUtil().xmlToObject(result, new Response(), "msg");
                     List<Object> list =resp.getValues();
                     if(list.size()==0){
@@ -197,9 +202,9 @@ public class UserService extends Activity{
                     	HashMap<String, String> map = new HashMap<String, String>();
                         map.put("title", ((Service)object).getTitle());
                         map.put("id", ((Service)object).getId()+"");
-                        String flag = "未回复";
+                        String flag = "未处理";
                         if(((Service)object).getState().equals("1")){
-                        	flag = "已回复";
+                        	flag = "已处理";
                         }
                         map.put("flag", flag);
                         data.add(map);

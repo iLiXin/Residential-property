@@ -7,7 +7,14 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.tjpu.pojo.Complain;
+import com.tjpu.pojo.Content;
+import com.tjpu.pojo.Response;
+import com.tjpu.pojo.Service;
 import com.tjpu.property.R;
+import com.tjpu.property.http.MessageUtil;
+import com.tjpu.property.util.DateOpt;
+import com.tjpu.property.util.XmlUtil;
 import com.tjpu.property.view.DropDownListView;
 import com.tjpu.property.view.DropDownListView.OnDropDownListener;
 
@@ -16,30 +23,37 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.SimpleAdapter;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 public class ManagerService extends Activity{
+
 	
-	private LinkedList<String>   listItems = null;
     private DropDownListView     listView  = null;
     private SimpleAdapter adapter;
-
-    private String[] mStrings  = { "Aaaaaa", "Bbbbbb", "Cccccc", "Dddddd", "Eeeeee",
-            "Ffffff", "Gggggg", "Hhhhhh", "Iiiiii", "Jjjjjj", "Kkkkkk", "Llllll", "Mmmmmm",
-            "Nnnnnn"};
-
-    private List<HashMap<String, String>> data = new ArrayList<HashMap<String, String>>();
+    private String lasttime;
+    private int index = 10;
+    private String id;
     
-    
+    private LinkedList<HashMap<String, String>> data = new LinkedList<HashMap<String, String>>();
 
-    @Override
+
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.managerservice);
         
+        try {
+			lasttime = DateOpt.getNowTime();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
         
         
         listView = (DropDownListView)findViewById(R.id.managerservice_lv);
@@ -60,24 +74,38 @@ public class ManagerService extends Activity{
                 new GetDataTask(false).execute();
             }
         });
-
-        HashMap<String, String> map1 = new HashMap<String, String>();
-        map1.put("title", "标题1");
-        map1.put("flag", "0");
-        HashMap<String, String> map2 = new HashMap<String, String>();
-        map2.put("title", "标题2");
-        map2.put("flag", "1");
-        data.add(map1);
-        data.add(map2);
-        data.add(map2);
-        data.add(map2);
-        data.add(map2);
-        data.add(map2);
-        data.add(map2);
-        data.add(map2);
-        data.add(map2);
-        data.add(map2);
-        data.add(map2);
+        
+        
+        
+        List<Object> templist = new ArrayList<Object>();
+		templist.add(new Service());
+		
+		Content content = new Content();
+    	content.setValue(templist);
+    	content.setIdentify("service");
+    	String createTime = "0000";
+		try {
+			createTime = DateOpt.getNowTime();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        
+        String result = new MessageUtil().send("0 or 1=1", createTime, "select_*", content);
+		
+		Response resp = (Response) new XmlUtil().xmlToObject(result, new Response(), "msg");
+        List<Object> values = resp.getValues();
+        for (Object object : values) {
+        	HashMap<String, String> map = new HashMap<String, String>();
+            map.put("title", ((Service)object).getTitle());
+            map.put("id", ((Service)object).getId()+"");
+            String flag = "未处理";
+            if(!((Service)object).getState().equals("0")){
+            	flag = "已处理";
+            }
+            map.put("flag", flag);
+            data.add(map);
+		}
+        
         
         adapter = new SimpleAdapter(this, data, R.layout.userservice_items, new String[]{"title","flag"}, new int[]{R.id.title,R.id.flag});
         listView.setAdapter(adapter);
@@ -88,9 +116,11 @@ public class ManagerService extends Activity{
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				System.out.println("点击了："+ arg3);
-				
+				id = data.get(arg2-1).get("id");
+				System.out.println("id="+id);
 				Intent intent = new Intent();
-				intent.putExtra("id", arg3+"");
+				
+				intent.putExtra("id", id+"");
 				intent.setClass(ManagerService.this, ManagerServiceDetail.class);
 				ManagerService.this.startActivity(intent);
 				
@@ -98,7 +128,7 @@ public class ManagerService extends Activity{
         });
     }
 
-    private class GetDataTask extends AsyncTask<Void, Void, String[]> {
+    private class GetDataTask extends AsyncTask<String, String, List<HashMap<String, String>>> {
 
         private boolean isDropDown;
 
@@ -107,20 +137,77 @@ public class ManagerService extends Activity{
         }
 
         @Override
-        protected String[] doInBackground(Void... params) {
+        protected List<HashMap<String, String>> doInBackground(String... params) {
             try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                ;
-            }
-            return mStrings;
+            	
+            	if(isDropDown){
+            		
+            		List<Object> templist = new ArrayList<Object>();
+            		templist.add(new Service());
+            		
+            		Content content = new Content();
+                	content.setIdentify(lasttime);
+                	content.setValue(templist);
+                	
+                    String result = new MessageUtil().send("0 or 1=1", lasttime, "select_*_drop", content);
+                    Response resp = (Response) new XmlUtil().xmlToObject(result, new Response(), "msg");
+                    List<Object> list =resp.getValues();
+                    for (Object object : list) {
+                    	HashMap<String, String> map = new HashMap<String, String>();
+                        map.put("title", ((Service)object).getTitle());
+                        map.put("id", ((Service)object).getId()+"");
+                        String flag = "未处理";
+                        if(((Service)object).getState().equals("1")){
+                        	flag = "已处理";
+                        }
+                        map.put("flag", flag);
+                        data.addFirst(map);
+    				}
+                    
+                    lasttime = DateOpt.getNowTime();
+            	}else{
+            		List<Object> templist = new ArrayList<Object>();
+            		templist.add(new Service());
+            		
+            		Content content = new Content();
+                	content.setIdentify(index+"");
+                	content.setValue(templist);
+            		
+                    String result = new MessageUtil().send("0 or 1=1", index+"", "select_*_bottom", content);
+                    Response resp = (Response) new XmlUtil().xmlToObject(result, new Response(), "msg");
+                    List<Object> list =resp.getValues();
+                    if(list.size()==0){
+                    	listView.setHasMore(false);
+                    }
+                    
+                    for (Object object : list) {
+                    	HashMap<String, String> map = new HashMap<String, String>();
+                        map.put("title", ((Service)object).getTitle());
+                        map.put("id", ((Service)object).getId()+"");
+                        String flag = "未处理";
+                        if(((Service)object).getState().equals("1")){
+                        	flag = "已处理";
+                        }
+                        map.put("flag", flag);
+                        data.add(map);
+    				}
+                    
+                    index+=10;
+            	}
+            	
+            	
+                
+            } catch (Exception e) {
+				e.printStackTrace();
+			}
+            return data;
         }
 
         @Override
-        protected void onPostExecute(String[] result) {
+        protected void onPostExecute(List<HashMap<String, String>> list) {
 
             if (isDropDown) {
-                listItems.addFirst("Added after drop down");
+            	
                 adapter.notifyDataSetChanged();
 
                 // should call onDropDownComplete function of DropDownListView at end of drop down complete.
@@ -128,15 +215,14 @@ public class ManagerService extends Activity{
                 listView.onDropDownComplete(getString(R.string.update_at)
                                             + dateFormat.format(new Date()));
             } else {
-                listItems.add("Added after on bottom");
                 adapter.notifyDataSetChanged();
 
                 // should call onBottomComplete function of DropDownListView at end of on bottom complete.
                 listView.onBottomComplete();
             }
 
-            super.onPostExecute(result);
+            super.onPostExecute(list);
         }
+
     }
-    
 }

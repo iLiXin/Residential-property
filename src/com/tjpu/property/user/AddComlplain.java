@@ -40,9 +40,8 @@ public class AddComlplain extends Activity{
 			@Override
 			public void onClick(View v) {
 				
-				SharedPreferences sp = getSharedPreferences("user", MODE_WORLD_WRITEABLE);
-				sp.edit().putString("user", "3");
-				String user = sp.getString("user", "2");
+				SharedPreferences sp = getSharedPreferences("TOKEN", MODE_PRIVATE);
+				String user = sp.getInt("user", 2)+"";
 				
 				String content = et.getText().toString().trim();
 				String title = title_et.getText().toString().trim();

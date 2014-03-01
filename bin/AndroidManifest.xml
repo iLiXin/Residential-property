@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.tjpu.property.menu.UserMenu"
+            android:name="com.tjpu.property.menu.Login"
             android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -63,6 +63,12 @@
         <activity android:name="com.tjpu.property.user.UserHouse" >
         </activity>
         <activity android:name="com.tjpu.property.user.UserHouseDetail" >
+        </activity>
+        <activity android:name="com.tjpu.property.manager.AddCost" >
+        </activity>
+        <activity android:name="com.tjpu.property.menu.ManagerMenu" >
+        </activity>
+        <activity android:name="com.tjpu.property.menu.UserMenu" >
         </activity>
     </application>
 
